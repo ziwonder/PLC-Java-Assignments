@@ -2,8 +2,6 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public abstract class Apartment implements Serializable {
     private int id;
@@ -15,30 +13,20 @@ public abstract class Apartment implements Serializable {
     private String street;
     private int houseNumber;
     private int apartmentNumber;
-    //private static ArrayList<Integer> idList = new ArrayList<>();
 
     public Apartment(int id, double area, int numberOfRooms, int floor, int yearOfConstruction, int postalCode,
             String street, int houseNumber, int apartmentNumber) {
         if (id < 0 || area < 0 || floor < 0 || numberOfRooms < 0 || yearOfConstruction < 0 || postalCode < 0
-        || street == null || houseNumber < 0 || apartmentNumber < 0) {
+                || street == null || houseNumber < 0 || apartmentNumber < 0) {
             throw new IllegalArgumentException("Error: Invalid parameter.");
         }
         if (yearOfConstruction > 2024)
             throw new IllegalArgumentException("Error:Invalid year of construction.");
-        /*
-        if (idList.contains(id))
-            throw new IllegalArgumentException("Error: Apartment already exists. (id=<"
-                    + id + ">)");
-        else
-            idList.add(id);
-
-         */
         this.id = id;
         this.area = area;
         this.numberOfRooms = numberOfRooms;
         this.floor = floor;
         this.yearOfConstruction = yearOfConstruction;
-        // this.address = new Address(postalCode, street, houseNumber, apartmentNumber);
         this.postalCode = postalCode;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -72,7 +60,6 @@ public abstract class Apartment implements Serializable {
         return yearOfConstruction;
     }
 
-    ///public Address getAddress() {return address;}
     public int getPostalCode() {
         return postalCode;
     }
@@ -95,7 +82,3 @@ public abstract class Apartment implements Serializable {
         return new DecimalFormat("0.00", dfs);
     }
 }
-
-
-
-

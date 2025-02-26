@@ -17,7 +17,7 @@ public class PropertyManagementClient {
             case "list":
                 if (args.length == 2)
                     listApartments(propertyManagement);
-                else if  (args.length == 3) //how to check args[2]
+                else if (args.length == 3) // how to check args[2]
                     listApartment(propertyManagement, args[2]);
                 else
                     System.out.println("Invalid parameter.");
@@ -31,16 +31,14 @@ public class PropertyManagementClient {
                     if ("RA".equals(args[2])) {
                         addRentedApartment(propertyManagement, args);
                     }
-                }
-                else
+                } else
                     System.out.println("Error: Invalid parameter.");
                 break;
 
             case "delete":
                 if (args.length == 3) {
                     deleteApartment(propertyManagement, args[2]);
-                }
-                else
+                } else
                     System.out.println("Error: Invalid parameter.");
                 break;
 
@@ -103,15 +101,14 @@ public class PropertyManagementClient {
         } catch (NumberFormatException e) {
             System.out.println("Error: Invalid parameter.");
             return;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
         }
 
     }
 
-    public static void addRentedApartment (PropertyManagement propertyManagement, String[] args) {
+    public static void addRentedApartment(PropertyManagement propertyManagement, String[] args) {
         try {
             int id = Integer.parseInt(args[3]);
             double area = Double.parseDouble(args[4]);
@@ -133,8 +130,7 @@ public class PropertyManagementClient {
         } catch (NumberFormatException e) {
             System.out.println("Error: Invalid parameter.");
             return;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -146,11 +142,10 @@ public class PropertyManagementClient {
         System.out.println(propertyManagement.getApartment(Integer.parseInt(args)));
     }
 
-    public static void deleteApartment (PropertyManagement propertyManagement, String args) {
+    public static void deleteApartment(PropertyManagement propertyManagement, String args) {
         try {
             propertyManagement.deleteApartment(Integer.parseInt(args));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
         }

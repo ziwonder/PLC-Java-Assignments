@@ -62,8 +62,8 @@ public class PropertyManagement {
         }
         int finalOldest = oldest;
         return apartments.stream()
-                .filter(a -> a.getAge() == finalOldest)  // Filter apartments with the oldest age
-                .map(Apartment::getId)  // Map to apartment IDs
+                .filter(a -> a.getAge() == finalOldest)
+                .map(Apartment::getId)
                 .collect(Collectors.toList());
 
     }

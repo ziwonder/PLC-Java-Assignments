@@ -12,16 +12,6 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
         if (apartmentsFile == null)
             throw new IllegalArgumentException("Error: Invalid parameter.");
         this.apartmentsFile = apartmentsFile;
-        /*File file = new File(apartmentsFile);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-                this.listOfApartments = new ArrayList<>();
-            } catch (IOException e) {
-                System.out.println("Error creating the file: " + e.getMessage());
-                System.exit(1);
-            }
-        } else {*/
             try {
                 FileInputStream inFile = new FileInputStream(apartmentsFile);
                 ObjectInputStream in = new ObjectInputStream(inFile);
@@ -29,18 +19,15 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
                 in.close();
                 inFile.close();
             } catch (FileNotFoundException e) {
-                //System.out.println("File not found, starting with an empty list.");
                  e.printStackTrace();
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println("Deserialization error: " + e.getMessage());
                 System.exit(1);
             }
 
-        // this.listOfApartments = new ArrayList<>();
     }
 
     public List<Apartment> getApartments() {
-        // List<Apartment> listOfApartments = new ArrayList<>();
         return listOfApartments;
     }
 
@@ -55,7 +42,6 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
     }
 
     public void saveApartment(Apartment apartment) {
-        // List<Apartment> listOfApartments = getApartments();
         if (getApartmentById(apartment.getId()) != null) {
             System.out.println("Error: Apartment already exists. (id=" + apartment.getId() + ")");
             return;
@@ -91,30 +77,3 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
     }
 
 }
-
-/*
-public void deleteApartment(int id) {
-        boolean apartmentFound = false;
-
-        Iterator<Apartment> iterator = listOfApartments.iterator();
-    while (iterator.hasNext()) {
-        Apartment apartment = iterator.next();
-        if (apartment.getId() == id) {
-            iterator.remove();
-            apartmentFound = true;
-            //Apartment::setIds(getAllIds().remove(id));
-            break;
-        }
-    }
-    if (!apartmentFound) {
-        throw new IllegalArgumentException("Error: Apartment not found. (id=" + id + ")");
-    }
-        try (FileOutputStream file = new FileOutputStream(apartmentsFile);
-                ObjectOutputStream out = new ObjectOutputStream(file)) {
-            out.writeObject(listOfApartments);
-            out.close();
-        } catch (IOException e) {
-            System.out.println("Serialization error: " + e.getMessage());
-        }
-    }
-*/
